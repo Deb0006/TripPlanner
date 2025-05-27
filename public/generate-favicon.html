@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Generate Favicon</title>
+  <style>
+    canvas { border: 1px solid #ccc; margin: 20px; }
+    body { font-family: Arial, sans-serif; padding: 20px; }
+  </style>
+</head>
+<body>
+  <h2>Favicon Generator</h2>
+  <canvas id="favicon" width="32" height="32"></canvas>
+  <br>
+  <button onclick="downloadFavicon()">Download as ICO</button>
+  
+  <script>
+    const canvas = document.getElementById('favicon');
+    const ctx = canvas.getContext('2d');
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, 32, 32);
+    
+    // Draw background circle
+    ctx.fillStyle = '#667eea';
+    ctx.beginPath();
+    ctx.arc(16, 16, 16, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    // Draw airplane
+    ctx.fillStyle = 'white';
+    
+    // Airplane body
+    ctx.fillRect(14, 8, 4, 16);
+    
+    // Airplane wings
+    ctx.fillRect(8, 14, 16, 4);
+    
+    // Airplane tail
+    ctx.fillRect(12, 6, 8, 4);
+    
+    // Airplane nose
+    ctx.beginPath();
+    ctx.moveTo(16, 24);
+    ctx.lineTo(14, 28);
+    ctx.lineTo(18, 28);
+    ctx.closePath();
+    ctx.fill();
+    
+    function downloadFavicon() {
+      const link = document.createElement('a');
+      link.download = 'trip-favicon.ico';
+      link.href = canvas.toDataURL('image/x-icon');
+      link.click();
+    }
+  </script>
+</body>
+</html>
